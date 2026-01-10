@@ -192,3 +192,5 @@ dump.rdb
 *.pyc
 
 EOF
+# secrets
+social-interaction-cloud/sic_framework/services/eis/google-key.json
