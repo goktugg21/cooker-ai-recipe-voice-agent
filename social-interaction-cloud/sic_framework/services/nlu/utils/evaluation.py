@@ -147,3 +147,37 @@ def evaluate(model, test_data, intent_classes, slot_classes, slot_label_encoder,
     print(f"Merged Slot Type Classification Report:\n{merged_slot_class_report}")
 
     return metrics
+
+if __name__ == "__main__":
+    from dataset import NLURecipeDataset, load_ontology, load_data, preprocess_data, fit_encoders
+    from model import BERTNLUModel
+    import os
+
+    # 1. Data en Encoders voorbereiden
+    print("Test-data laden...")
+    ontology = load_ontology("data/ontology.json")
+    test_raw = load_data("data/test.json") # We testen op de TEST set
+    fit_encoders("data/ontology.json")
+    test_processed = preprocess_data(test_raw)
+    test_dataset = NLURecipeDataset(test_processed, ontology)
+
+    # 2. Het getrainde model inladen
+    print("Model inladen...")
+    from dataset import slot_label_encoder # Voor het juiste aantal slots
+    model = BERTNLUModel(num_intents=len(ontology['intents']), 
+                         num_slots=len(slot_label_encoder.classes_))
+    
+    # Laad de gewichten die je net hebt getraind
+    model.load_state_dict(torch.load("model_baseline.pth"))
+    
+    # 3. Evaluatie starten
+    print("--- START EVALUATIE ---")
+    intent_classes = ontology['intents']
+    slot_classes = slot_label_encoder.classes_.tolist()
+    
+    metrics = evaluate(model, test_dataset, intent_classes, slot_classes, slot_label_encoder)
+    
+    print("\n--- EINRESULTAAT ---")
+    print(f"Intent Accuracy: {metrics['intent_accuracy']:.4f}")
+    print(f"Slot F1-Score:   {metrics['slot_f1']:.4f}")
+
