@@ -2,8 +2,8 @@
 import torch
 from sic_framework.services.nlu.utils.dataset import intent_label_encoder, slot_label_encoder, tokenizer
 from sic_framework.services.nlu.utils.utils import *
-
-
+from dataset import intent_label_encoder, slot_label_encoder, tokenizer
+from model import BERTNLUModel
 
 def predict(model, text, max_length=16, device="cpu"):
     """
@@ -63,3 +63,37 @@ def predict(model, text, max_length=16, device="cpu"):
         normalized_slots = normalize_slots(slot_dict)
 
         return intent, intent_confidence, normalized_slots, slot_confidences
+
+
+if __name__ == "__main__":
+    import argparse
+    from dataset import load_ontology, fit_encoders
+    from model import BERTNLUModel
+
+    # 1. Instellingen uit de terminal halen
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--text", type=str, required=True)
+    args = parser.parse_args()
+
+    # 2. Alles voorbereiden (net als bij trainen/evaluatie)
+    ontology = load_ontology("data/ontology.json")
+    fit_encoders("data/ontology.json")
+    
+    # Model laden met de juiste hoeveelheid slots
+    from dataset import slot_label_encoder
+    model = BERTNLUModel(num_intents=len(ontology['intents']), 
+                         num_slots=len(slot_label_encoder.classes_))
+    
+    # getrainde brein inladen
+    model.load_state_dict(torch.load("model_baseline.pth"))
+
+    # 3. De voorspelling doen
+    intent, confidence, slots, _ = predict(model, args.text)
+
+    # 4. Het resultaat op scherm printen
+    print("\n" + "="*30)
+    print(f"INPUT: {args.text}")
+    print("-" * 30)
+    print(f"INTENT: {intent} ({confidence:.2%})")
+    print(f"SLOTS:  {slots}")
+    print("="*30 + "\n")
