@@ -1,0 +1,49 @@
+=== MARBEL TEXT DEMO (evidence generator) ===
+Repo root: /Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1
+Log file: /Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/artifacts/logs/marbel/marbel_text_demo_2026-01-15_202846.txt
+
+MARBEL_EVENT prolog_unavailable error="No module named 'pyswip'"
+MARBEL_EVENT turn_start turn="1" user_text="hello"
+MARBEL_EVENT intent_received intent="greeting" params={}
+MARBEL_EVENT pattern_chosen pattern_id="fallback_greeting"
+MARBEL_EVENT kr_update changed_keys=[] kr_snapshot={}
+MARBEL_EVENT next_action agent_intent="greeting" agent_text="[greeting]"
+MARBEL_EVENT state_transition before={"turn": 0, "active_pattern": null, "kr": {}} after={"turn": 1, "active_pattern": "fallback_greeting", "kr": {}}
+MARBEL_EVENT turn_start turn="2" user_text="who are you"
+MARBEL_EVENT intent_received intent="selfIdentification" params={}
+MARBEL_EVENT pattern_chosen pattern_id="fallback_selfIdentification"
+MARBEL_EVENT kr_update changed_keys=[] kr_snapshot={}
+MARBEL_EVENT next_action agent_intent="selfIdentification" agent_text="[selfIdentification]"
+MARBEL_EVENT state_transition before={"turn": 1, "active_pattern": "fallback_greeting", "kr": {}} after={"turn": 2, "active_pattern": "fallback_selfIdentification", "kr": {}}
+MARBEL_EVENT turn_start turn="3" user_text="recommend me something"
+MARBEL_EVENT intent_received intent="recommend" params={}
+MARBEL_EVENT pattern_chosen pattern_id="fallback_recommend"
+MARBEL_EVENT kr_update changed_keys=["goal"] kr_snapshot={"goal": "recommendation"}
+MARBEL_EVENT next_action agent_intent="specifyGoal" agent_text="[specifyGoal]"
+MARBEL_EVENT state_transition before={"turn": 2, "active_pattern": "fallback_selfIdentification", "kr": {"goal": "recommendation"}} after={"turn": 3, "active_pattern": "fallback_recommend", "kr": {"goal": "recommendation"}}
+MARBEL_EVENT turn_start turn="4" user_text="I want something with chicken"
+MARBEL_EVENT intent_received intent="featureInquiry" params={"ingredient": "chicken"}
+MARBEL_EVENT pattern_chosen pattern_id="fallback_featureInquiry"
+MARBEL_EVENT kr_update changed_keys=["filters", "last_featureInquiry"] kr_snapshot={"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}
+MARBEL_EVENT next_action agent_intent="ackFilter" agent_text="[ackFilter]"
+MARBEL_EVENT state_transition before={"turn": 3, "active_pattern": "fallback_recommend", "kr": {"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}} after={"turn": 4, "active_pattern": "fallback_featureInquiry", "kr": {"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}}
+MARBEL_EVENT turn_start turn="5" user_text="remove chicken"
+MARBEL_EVENT intent_received intent="featureRemovalRequest" params={"ingredient": "chicken"}
+MARBEL_EVENT pattern_chosen pattern_id="fallback_featureRemovalRequest"
+MARBEL_EVENT kr_update changed_keys=["filters", "last_featureRemoval"] kr_snapshot={"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken"}
+MARBEL_EVENT next_action agent_intent="ackFilter" agent_text="[ackFilter]"
+MARBEL_EVENT state_transition before={"turn": 4, "active_pattern": "fallback_featureInquiry", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken"}} after={"turn": 5, "active_pattern": "fallback_featureRemovalRequest", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken"}}
+MARBEL_EVENT turn_start turn="6" user_text="select recipe 574"
+MARBEL_EVENT intent_received intent="selectRecipe" params={"recipe_id": "574"}
+MARBEL_EVENT pattern_chosen pattern_id="fallback_selectRecipe"
+MARBEL_EVENT kr_update changed_keys=["selected_recipe"] kr_snapshot={"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}
+MARBEL_EVENT next_action agent_intent="recipeChoiceReceipt" agent_text="[recipeChoiceReceipt]"
+MARBEL_EVENT state_transition before={"turn": 5, "active_pattern": "fallback_featureRemovalRequest", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}} after={"turn": 6, "active_pattern": "fallback_selectRecipe", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}}
+MARBEL_EVENT turn_start turn="7" user_text="ok"
+MARBEL_EVENT intent_received intent="appreciationReceipt" params={}
+MARBEL_EVENT pattern_chosen pattern_id="fallback_appreciationReceipt"
+MARBEL_EVENT kr_update changed_keys=[] kr_snapshot={"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}
+MARBEL_EVENT next_action agent_intent="paraphraseRequest" agent_text="[paraphraseRequest]"
+MARBEL_EVENT state_transition before={"turn": 6, "active_pattern": "fallback_selectRecipe", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}} after={"turn": 7, "active_pattern": "fallback_appreciationReceipt", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}}
+
+=== DONE ===

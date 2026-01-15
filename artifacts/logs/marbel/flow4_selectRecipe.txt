@@ -1,0 +1,14 @@
+36:MARBEL_EVENT turn_start turn="6" user_text="select recipe 574"
+37:MARBEL_EVENT intent_received intent="selectRecipe" params={"recipe_id": "574"}
+38:MARBEL_EVENT pattern_chosen pattern_id="fallback_selectRecipe"
+39:MARBEL_EVENT kr_update changed_keys=["selected_recipe"] kr_snapshot={"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}
+40:MARBEL_EVENT next_action agent_intent="recipeChoiceReceipt" agent_text="[recipeChoiceReceipt]"
+41:MARBEL_EVENT state_transition before={"turn": 5, "active_pattern": "fallback_featureRemovalRequest", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}} after={"turn": 6, "active_pattern": "fallback_selectRecipe", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}}
+42:MARBEL_EVENT turn_start turn="7" user_text="ok"
+43:MARBEL_EVENT intent_received intent="appreciationReceipt" params={}
+44:MARBEL_EVENT pattern_chosen pattern_id="fallback_appreciationReceipt"
+45:MARBEL_EVENT kr_update changed_keys=[] kr_snapshot={"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}
+46:MARBEL_EVENT next_action agent_intent="paraphraseRequest" agent_text="[paraphraseRequest]"
+47:MARBEL_EVENT state_transition before={"turn": 6, "active_pattern": "fallback_selectRecipe", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}} after={"turn": 7, "active_pattern": "fallback_appreciationReceipt", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemoval": "remove chicken", "selected_recipe": "574"}}
+48:
+49:=== DONE ===

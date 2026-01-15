@@ -96,23 +96,39 @@ class SICRedis:
         # we assume that a password is required
         host, password = get_redis_db_ip_password()
 
-        # Let's try to connect first without TLS / working without TLS facilitates simple use of redis-cli
+        # Try to connect first without TLS / working without TLS facilitates simple use of redis-cli
         try:
-            self._redis = redis.Redis(host=host, ssl=False, password=password)
+            # Only send AUTH if a password is configured
+            if password:
+                self._redis = redis.Redis(host=host, ssl=False, password=password)
+            else:
+                self._redis = redis.Redis(host=host, ssl=False)
+
+            # Force a connection now so auth errors happen here, not later
+            self._redis.ping()
+
         except redis.exceptions.AuthenticationError:
-            # redis is running without a password, do not supply it.
+            # Redis is running without a password; retry without AUTH
             self._redis = redis.Redis(host=host, ssl=False)
+            self._redis.ping()
+
         except redis.exceptions.ConnectionError as e:
-            # Must be a connection error; so now let's try to connect with TLS
+            # Must be a connection error; now try to connect with TLS
             ssl_ca_certs = os.path.join(os.path.dirname(__file__), "cert.pem")
             print(
                 "TLS required. Looking for certificate here:",
                 ssl_ca_certs,
                 "(Source error {})".format(e),
             )
-            self._redis = redis.Redis(
-                host=host, ssl=True, ssl_ca_certs=ssl_ca_certs, password=password
-            )
+
+            if password:
+                self._redis = redis.Redis(
+                    host=host, ssl=True, ssl_ca_certs=ssl_ca_certs, password=password
+                )
+            else:
+                self._redis = redis.Redis(host=host, ssl=True, ssl_ca_certs=ssl_ca_certs)
+
+            self._redis.ping()
 
         try:
             self._redis.ping()
