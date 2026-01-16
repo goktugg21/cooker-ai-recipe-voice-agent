@@ -1,0 +1,19 @@
+12:MARBEL_EVENT turn_start turn="2" user_text="who are you"
+13:MARBEL_EVENT intent_received intent="selfIdentification" params={}
+14:MARBEL_EVENT pattern_chosen pattern_id="fallback_selfIdentification"
+15:MARBEL_EVENT kr_update changed_keys=[] kr_snapshot={}
+16:MARBEL_EVENT next_action agent_intent="selfIdentification" agent_text="[selfIdentification]"
+17:MARBEL_EVENT state_transition before={"turn": 1, "active_pattern": "fallback_greeting", "kr": {}} after={"turn": 2, "active_pattern": "fallback_selfIdentification", "kr": {}}
+18:MARBEL_EVENT turn_start turn="3" user_text="recommend me something"
+19:MARBEL_EVENT intent_received intent="recommend" params={}
+20:MARBEL_EVENT pattern_chosen pattern_id="fallback_recommend"
+21:MARBEL_EVENT kr_update changed_keys=["goal"] kr_snapshot={"goal": "recommendation"}
+22:MARBEL_EVENT next_action agent_intent="specifyGoal" agent_text="[specifyGoal]"
+23:MARBEL_EVENT state_transition before={"turn": 2, "active_pattern": "fallback_selfIdentification", "kr": {"goal": "recommendation"}} after={"turn": 3, "active_pattern": "fallback_recommend", "kr": {"goal": "recommendation"}}
+24:MARBEL_EVENT turn_start turn="4" user_text="I want something with chicken"
+25:MARBEL_EVENT intent_received intent="featureInquiry" params={"ingredient": "chicken"}
+26:MARBEL_EVENT pattern_chosen pattern_id="fallback_featureInquiry"
+27:MARBEL_EVENT kr_update changed_keys=["filters", "last_featureInquiry"] kr_snapshot={"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}
+28:MARBEL_EVENT next_action agent_intent="ackFilter" agent_text="[ackFilter]"
+29:MARBEL_EVENT state_transition before={"turn": 3, "active_pattern": "fallback_recommend", "kr": {"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}} after={"turn": 4, "active_pattern": "fallback_featureInquiry", "kr": {"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}}
+30:MARBEL_EVENT turn_start turn="5" user_text="remove chicken"

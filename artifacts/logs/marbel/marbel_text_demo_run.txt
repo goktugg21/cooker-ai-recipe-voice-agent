@@ -1,0 +1,5 @@
+=== MARBEL TEXT DEMO (evidence generator) ===
+Repo root: /Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1
+Latest log: /Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/artifacts/logs/marbel/marbel_text_demo_latest.txt
+Wrote flow snippets in artifacts/logs/marbel/
+=== DONE ===

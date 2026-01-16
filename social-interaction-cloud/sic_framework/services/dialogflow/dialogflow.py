@@ -8,6 +8,8 @@ https://github.com/googleapis/python-dialogflow/blob/main/samples/snippets/detec
 
 import threading
 import time
+import os
+import json
 
 import google
 from google.cloud import dialogflow
@@ -178,6 +180,7 @@ class DialogflowComponent(SICComponent):
         audio messages, and yield them to dialogflow. The request generator SHOULD be quite fast, fast enough
         that it won't drop messages due to the queue size of 1.
     """
+    COMPONENT_STARTUP_TIMEOUT = 30
 
     def __init__(self, *args, **kwargs):
         self.responses = None
@@ -279,7 +282,26 @@ class DialogflowComponent(SICComponent):
 
     @staticmethod
     def get_conf():
-        return DialogflowConf()
+        # Path mandated by course structure
+        keyfile_path = os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                "../eis/google-key.json"
+            )
+        )
+
+        if not os.path.exists(keyfile_path):
+            raise FileNotFoundError(
+                f"Dialogflow keyfile not found at {keyfile_path}"
+            )
+
+        with open(keyfile_path, "r") as f:
+            keyfile_json = json.load(f)
+
+        return DialogflowConf(
+            keyfile_json=keyfile_json,
+            language="en-US"
+        )
 
     @staticmethod
     def get_inputs():

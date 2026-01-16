@@ -198,3 +198,4 @@ social-interaction-cloud/sic_framework/services/eis/google-key.json
 # local planning files
 /docs/
 /scripts/
+.DS_Store

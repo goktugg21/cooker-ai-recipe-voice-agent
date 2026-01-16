@@ -1,0 +1,4 @@
+metric,value,threshold,pass_fail
+intent_accuracy,0.8580,0.85,pass
+slot_f1,0.9687,0.80,pass
+

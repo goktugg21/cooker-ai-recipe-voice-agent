@@ -11,16 +11,16 @@ Wrote flow snippets in artifacts/logs/marbel/
 17:MARBEL_EVENT next_action agent_intent="specifyGoal" agent_text="[specifyGoal]"
 18:MARBEL_EVENT state_transition before={"turn": 2, "active_pattern": "fallback_selfIdentification", "kr": {"goal": "recommendation"}} after={"turn": 3, "active_pattern": "fallback_recommend", "kr": {"goal": "recommendation"}} 
 
-24:MARBEL_EVENT turn_start turn="4" user_text="I want something with chicken"
-25:MARBEL_EVENT intent_received intent="featureInquiry" params={"ingredient": "chicken"}
+24:MARBEL_EVENT turn_start turn="4" user_text="I want Italian lunch with chicken"
+25:MARBEL_EVENT intent_received intent="addFilter" params={"cuisine": "italian", "mealType": "lunch", "ingredient": "chicken"}
 26:MARBEL_EVENT pattern_chosen pattern_id="fallback_featureInquiry"
-27:MARBEL_EVENT kr_update changed_keys=["filters", "last_featureInquiry"] kr_snapshot={"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}
+27:MARBEL_EVENT kr_update changed_keys=["filters", "last_featureInquiry"] kr_snapshot={"goal": "recommendation", "filters": {"cuisine": "italian", "mealType": "lunch", "ingredient": "chicken"}, "last_featureInquiry": "I want Italian lunch with chicken"}
 28:MARBEL_EVENT next_action agent_intent="ackFilter" agent_text="[ackFilter]"
-29:MARBEL_EVENT state_transition before={"turn": 3, "active_pattern": "fallback_recommend", "kr": {"goal": "recommendation"}} after={"turn": 4, "active_pattern": "fallback_featureInquiry", "kr": {"goal": "recommendation", "filters": {"ingredient": "chicken"}, "last_featureInquiry": "I want something with chicken"}}
+29:MARBEL_EVENT state_transition before={"turn": 3, "active_pattern": "fallback_recommend", "kr": {"goal": "recommendation"}} after={"turn": 4, "active_pattern": "fallback_featureInquiry", "kr": {"goal": "recommendation", "filters": {"cuisine": "italian", "mealType": "lunch", "ingredient": "chicken"}}}
 
 38:MARBEL_EVENT turn_start turn="5" user_text="remove chicken"
 31:MARBEL_EVENT intent_received intent="featureRemovalRequest" params={"ingredient": "chicken"}
 32:MARBEL_EVENT pattern_chosen pattern_id="fallback_featureRemovalRequest"
-33:MARBEL_EVENT kr_update changed_keys=["filters", "last_featureRemovalRequest"] kr_snapshot={"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken", "last_featureRemovalRequest": "remove chicken"}
+33:MARBEL_EVENT kr_update changed_keys=["filters"] kr_snapshot={"goal": "recommendation", "filters": {"cuisine": "italian", "mealType": "lunch"}}
 34:MARBEL_EVENT next_action agent_intent="ackFilter" agent_text="[ackFilter]"
-35:MARBEL_EVENT state_transition before={"turn": 4, "active_pattern": "fallback_featureInquiry", "kr": {"goal": "recommendation", "filters": {"ingredient": "chicken"}}} after={"turn": 4, "active_pattern": "fallback_featureInquiry", "kr": {"goal": "recommendation", "filters": {}, "last_featureInquiry": "I want something with chicken"}}
+35:MARBEL_EVENT state_transition after={"turn": 5, "active_pattern": "fallback_featureRemovalRequest", "kr": {"goal": "recommendation", "filters": {"cuisine": "italian", "mealType": "lunch"}}}

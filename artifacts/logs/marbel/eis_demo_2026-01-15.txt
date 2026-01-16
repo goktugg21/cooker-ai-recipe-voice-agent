@@ -1,0 +1,45 @@
+Component not already alive, requesting EISComponent from manager  192.168.2.5
+[SICComponentManager 192.168.2.5]: INFO: Manager on device 192.168.2.5 starting
+[SICComponentManager 192.168.2.5]: INFO: Started component manager on ip "192.168.2.5" with components:
+[SICComponentManager 192.168.2.5]: INFO:  - DesktopMicrophoneSensor
+[SICComponentManager 192.168.2.5]: INFO:  - DesktopCameraSensor
+[SICComponentManager 192.168.2.5]: INFO:  - DesktopSpeakersActuator
+[SICComponentManager 192.168.2.5]: INFO:  - DesktopTextToSpeechActuator
+[DesktopMicrophoneSensor 192.168.2.5]: INFO: Starting sensor DesktopMicrophoneSensor
+[DesktopMicrophoneSensor 192.168.2.5]: INFO: Started component DesktopMicrophoneSensor
+Traceback (most recent call last):
+  File "/Users/bariskaban/miniconda3/envs/PCA26/bin/run-eis", line 33, in <module>
+    sys.exit(load_entry_point('social-interaction-cloud', 'console_scripts', 'run-eis')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/social-interaction-cloud/sic_framework/services/eis/run_eis.py", line 30, in main
+    eis = EISConnector(conf=eis_conf)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/social-interaction-cloud/sic_framework/core/connector.py", line 61, in __init__
+    self._start_component()
+  File "/Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/social-interaction-cloud/sic_framework/core/connector.py", line 134, in _start_component
+    six.raise_from(
+  File "<string>", line 3, in raise_from
+TimeoutError: Could not connect to EISComponent. Is SIC running on the device (ip:192.168.2.5)?
+Exception in thread SICLogSubscriber_callback_thread:
+Traceback (most recent call last):
+  File "/Users/bariskaban/miniconda3/envs/PCA26/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/Users/bariskaban/miniconda3/envs/PCA26/lib/python3.11/site-packages/redis/client.py", line 1196, in run
+    self.exception_handler(e, pubsub, self)
+  File "/Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/social-interaction-cloud/sic_framework/core/sic_redis.py", line 195, in exception_handler
+    raise e
+  File "/Users/bariskaban/miniconda3/envs/PCA26/lib/python3.11/site-packages/redis/client.py", line 1192, in run
+    pubsub.get_message(ignore_subscribe_messages=True, timeout=sleep_time)
+  File "/Users/bariskaban/miniconda3/envs/PCA26/lib/python3.11/site-packages/redis/client.py", line 1056, in get_message
+    return self.handle_message(response, ignore_subscribe_messages)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bariskaban/miniconda3/envs/PCA26/lib/python3.11/site-packages/redis/client.py", line 1132, in handle_message
+    handler(message)
+  File "/Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/social-interaction-cloud/sic_framework/core/sic_redis.py", line 186, in wrapped_callback
+    raise e
+  File "/Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/social-interaction-cloud/sic_framework/core/sic_redis.py", line 181, in wrapped_callback
+    return callback(sic_message)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bariskaban/Desktop/VU/P-CA/agent-2026-e1/social-interaction-cloud/sic_framework/core/sic_logging.py", line 62, in _handle_log_message
+    raise SICRemoteError("Error occurred, see remote stacktrace above.")
+sic_framework.core.sic_logging.SICRemoteError: Error occurred, see remote stacktrace above.

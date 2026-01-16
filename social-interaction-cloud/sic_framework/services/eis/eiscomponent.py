@@ -98,7 +98,8 @@ class EISComponent(SICComponent):
     """
     EIS SICAction
     """
-
+    COMPONENT_STARTUP_TIMEOUT = 30
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -139,7 +140,7 @@ class EISComponent(SICComponent):
             self._setup_dialogflow()
         else:
             self._setup_nlu()
-        self._setup_webserver()
+        # self._setup_webserver()
 
         # self.web_server.send_message(SetTurnMessage(user_turn=self.user_turn))
 

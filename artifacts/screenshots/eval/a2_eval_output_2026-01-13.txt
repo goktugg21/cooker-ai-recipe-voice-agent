@@ -1,0 +1,62 @@
+Intent Classification Report:
+                       precision    recall  f1-score   support
+
+            addFilter       0.90      0.95      0.92       917
+         appreciation       0.90      0.95      0.93       100
+      checkCapability       0.97      0.95      0.96       101
+         confirmation       0.94      0.80      0.86       119
+    deleteFilterValue       0.90      0.80      0.85       176
+      deleteParameter       0.93      0.83      0.88       104
+      disconfirmation       0.69      0.90      0.78       101
+             fallback       0.69      0.37      0.48       100
+             farewell       0.82      0.93      0.87       100
+             greeting       0.92      0.97      0.95       100
+        noMoreFilters       0.87      0.13      0.23       100
+        recipeRequest       0.72      0.99      0.84       113
+requestRecommendation       0.86      0.87      0.87       100
+              restart       0.66      0.89      0.76       100
+
+             accuracy                           0.86      2331
+            macro avg       0.84      0.81      0.80      2331
+         weighted avg       0.86      0.86      0.84      2331
+
+BIO Slot Classification Report:
+                      precision    recall  f1-score   support
+
+           B-cuisine       0.81      0.95      0.88       174
+B-dietaryRestriction       0.52      0.79      0.62       171
+          B-duration       0.73      0.60      0.66       204
+       B-easyKeyWord       0.86      0.06      0.10       108
+        B-filterType       0.70      0.38      0.49        97
+        B-ingredient       0.86      0.81      0.83       266
+          B-mealType       0.63      0.32      0.43       140
+            B-recipe       0.60      0.66      0.63       111
+           I-cuisine       0.00      0.00      0.00        15
+          I-duration       0.80      0.79      0.80       185   
+       I-easyKeyWord       0.90      0.41      0.57        87   
+        I-filterType       0.00      0.00      0.00        16   
+        I-ingredient       0.92      0.65      0.76       209   
+          I-mealType       1.00      0.02      0.04        55   
+            I-recipe       0.59      0.98      0.74       428   
+                   O       0.99      0.99      0.99     34779   
+
+            accuracy                           0.97     37296   
+           macro avg       0.69      0.55      0.55     37296   
+        weighted avg       0.97      0.97      0.97     37296   
+
+Merged Slot Type Classification Report:
+                    precision    recall  f1-score   support     
+
+           cuisine       0.84      0.90      0.87       189     
+dietaryRestriction       0.65      0.84      0.73       422     
+          duration       0.81      0.73      0.77       389     
+       easyKeyWord       0.89      0.22      0.3 0.72      0.34      0.46       113
+        ingredient       0.89      0.74      0.81       475
+          mealType       0.64      0.24      0.34       195
+            recipe       0.63      0.98      0.77       539
+
+         micro avg       0.73      0.72      0.72      2517
+--- EINRESULTAAT ---
+Intent Accuracy: 0.8580
+Slot F1-Score:   0.9687
+
