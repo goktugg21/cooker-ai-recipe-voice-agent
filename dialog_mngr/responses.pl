@@ -86,7 +86,9 @@ text(greeting, "Hey there!").
 
 
 % Intent: selfIdentification (for self-identification of the agent)
-
+text(selfIdentification, Txt) :-
+    agentName(Name),
+    string_concat("My name is ", Name, Txt).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Scripted text and phrases for ** DOMAIN SPECIFIC ** intents (sorted on intent name)	%%%
