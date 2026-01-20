@@ -354,3 +354,5 @@ pattern([terminate, [user, button], [agent, insert(terminated)]]) :-
 %%% Terminate Patterns
 % Pattern Terminated: Terminate (Agent)
 pattern([terminated, [agent, terminate]]).
+
+pattern([c10, [agent, greeting], [user, greeting]]) :- agentName('').
