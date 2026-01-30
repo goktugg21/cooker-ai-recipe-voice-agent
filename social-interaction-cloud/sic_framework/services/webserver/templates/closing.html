@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+	<head>
+        <meta charset="utf-8"/>
+
+        <title>Project Conversational Agents - Goodbye</title>
+
+        <!-- Suppress favicon.ico request -->
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+        <!-- Bootstrap JS Bundle -->
+        <script src="static/js/bootstrap.bundle.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="static/js/jquery-3.7.1.min.js"></script>
+
+        <!-- Socket.IO JS Bundle -->
+        <script src="static/js/socket.io.min.js"></script>
+
+        <!-- JS for Project Conversational Agents -->
+        <script src="static/js/pca.js" defer></script>
+	</head>
+	<body>
+        <div id="main">
+            <main class="container-fluid d-flex align-items-center justify-content-center" style="width:100vw; height:100vh">
+                <img class="bg-image" style="width: 100%; height: 100vh; position: fixed; top: 0; left: 0; z-index: -1;" src="https://images.pexels.com/photos/5908226/pexels-photo-5908226.jpeg" alt="Thank you background">
+                
+                <div class="text-center">
+                    <div class="card shadow-lg p-5" style="background-color: rgba(255,255,255,0.95); border-radius: 20px;">
+                        <h1 class="display-4 mb-4">🍳 Thank You!</h1>
+                        <hr>
+                        <h3 class="text-muted mb-4">Enjoy cooking your recipe!</h3>
+                        <p class="lead">
+                            We hope you have a delicious meal.<br>
+                            Come back anytime for more recipe recommendations!
+                        </p>
+                        <hr>
+                        <p class="text-muted">
+                            <em>- Cooker AI</em>
+                        </p>
+                        <br>
+                        <a href="start.html" class="btn btn-success btn-lg">
+                            🔄 Start New Conversation
+                        </a>
+                    </div>
+                </div>
+                
+            </main>
+            
+            <!-- Footer for transcripts -->
+            <footer class="fixed-bottom">
+                <p class="lead mb-0 bg-light text-center" style="min-height:0rem" id="transcript"></p>
+            </footer>
+        </div>
+    </body>
 </html>

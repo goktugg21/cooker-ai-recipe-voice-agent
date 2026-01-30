@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+	<head>
+        <meta charset="utf-8"/>
+
+        <title>Project Conversational Agents - Recipe Confirmation</title>
+
+        <!-- Suppress favicon.ico request -->
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+        <!-- Bootstrap JS Bundle -->
+        <script src="static/js/bootstrap.bundle.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="static/js/jquery-3.7.1.min.js"></script>
+
+        <!-- Socket.IO JS Bundle -->
+        <script src="static/js/socket.io.min.js"></script>
+
+        <!-- JS for Project Conversational Agents -->
+        <script src="static/js/pca.js" defer></script>
+	</head>
+	<body>
+        <div id="main">
+            <nav class="navbar mb-1" style="position: static">
+                <button class="btn" id="mic">
+                    <img class="img-fluid" style="width:1.5rem;" id="micimg" src="static/images/mic_out.png" alt="Microphone">
+                </button>
+            </nav>
+            <main class="container-fluid" style="width:100vw; height:80vh">
+                <img class="bg-image" style="width: 100%; height: 100vh; position: fixed; top: 0; left: 0; z-index: -1;" src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg" alt="Food background">
+                <br>
+                <center>
+                    <h2>How about this recipe?</h2>
+                </center>
+                <br>
+                
+                <!-- Recipe Card -->
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow-lg" style="background-color: rgba(255,255,255,0.95);">
+                            <div class="row g-0">
+                                <!-- Recipe Image -->
+                                <div class="col-md-5">
+                                    <img id="recipeImage" src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg" class="img-fluid rounded-start" style="height: 100%; object-fit: cover;" alt="Recipe image">
+                                </div>
+                                <!-- Recipe Details -->
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <h3 class="card-title" id="recipeName">Recipe Name</h3>
+                                        <hr>
+                                        <p class="card-text">
+                                            <strong>🍽️ Cuisine:</strong> <span id="recipeCuisine">-</span><br>
+                                            <strong>⏱️ Time:</strong> <span id="recipeTime">-</span> minutes<br>
+                                            <strong>👥 Servings:</strong> <span id="recipeServings">-</span>
+                                        </p>
+                                        <hr>
+                                        <p class="card-text">
+                                            <strong>🥗 Ingredients:</strong>
+                                        </p>
+                                        <div id="recipeIngredients" style="max-height: 150px; overflow-y: auto;">
+                                            <span class="badge bg-success m-1">ingredient 1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <br>
+                
+                <!-- Confirmation prompt -->
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="alert alert-info text-center">
+                            <h5>🎤 Say <strong>"Yes"</strong> to confirm or <strong>"No"</strong> to see another recipe</h5>
+                        </div>
+                    </div>
+                </div>
+                
+            </main>
+            
+            <!-- Footer for transcripts -->
+            <footer class="fixed-bottom">
+                <p class="lead mb-0 bg-light text-center" style="min-height:0rem" id="transcript"></p>
+            </footer>
+        </div>
+    </body>
 </html>

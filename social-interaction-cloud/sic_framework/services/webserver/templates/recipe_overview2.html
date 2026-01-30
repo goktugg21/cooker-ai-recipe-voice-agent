@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+	<head>
+        <meta charset="utf-8"/>
+
+        <title>Project Conversational Agents - Recipe List</title>
+
+        <!-- Suppress favicon.ico request -->
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+        <!-- Bootstrap JS Bundle -->
+        <script src="static/js/bootstrap.bundle.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="static/js/jquery-3.7.1.min.js"></script>
+
+        <!-- Socket.IO JS Bundle -->
+        <script src="static/js/socket.io.min.js"></script>
+
+        <!-- JS for Project Conversational Agents -->
+        <script src="static/js/pca.js" defer></script>
+	</head>
+	<body>
+        <div id="main">
+            <nav class="navbar mb-1" style="position: static">
+                <button class="btn" id="mic">
+                    <img class="img-fluid" style="width:1.5rem;" id="micimg" src="static/images/mic_out.png" alt="Microphone">
+                </button>
+            </nav>
+            <main class="container-fluid" style="width:100vw; height:80vh">
+                <img class="bg-image" style="width: 100%; height: 100vh; position: fixed; top: 0; left: 0; z-index: -1;" src="https://images.pexels.com/photos/349609/pexels-photo-349609.jpeg" alt="Food background">
+                <br>
+                <center>
+                    <h2>Here are some recipes for you!</h2>
+                </center>
+                <br>
+                
+                <!-- Current Filters -->
+                <div class="alert bg-secondary text-white mx-auto" style="max-width: 800px;">
+                    <center><h5><span id="recipecounter"></span> recipes match your preferences:</h5></center>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div class="card-deck" id="addFiltersHere">
+                    </div>
+                    <template id="filterCardTemplate">
+                        <div class="card text-center bg-light m-1" style="border:4px solid #07bc4c; max-width: 10rem">
+                            <div class="card-body">
+                                <p class="card-text" id="filterText">With chicken</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                
+                <!-- Recipe List -->
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card shadow" style="background-color: rgba(255,255,255,0.95);">
+                            <div class="card-body">
+                                <h4 class="card-title">🍽️ Available Recipes</h4>
+                                <hr>
+                                <div id="recipeList" class="row">
+                                    <!-- Recipe cards will be inserted here -->
+                                    <template id="recipeCardTemplate">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <img class="card-img-top" style="height: 150px; object-fit: cover;" src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg" alt="Recipe">
+                                                <div class="card-body">
+                                                    <h6 class="card-title" id="cardRecipeName">Recipe Name</h6>
+                                                    <small class="text-muted" id="cardRecipeInfo">30 min • 4 servings</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <br>
+                
+                <!-- Instructions -->
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="alert alert-info text-center">
+                            <h5>🎤 Say a recipe name or <strong>"recommend me something"</strong></h5>
+                        </div>
+                    </div>
+                </div>
+                
+            </main>
+            
+            <!-- Footer for transcripts -->
+            <footer class="fixed-bottom">
+                <p class="lead mb-0 bg-light text-center" style="min-height:0rem" id="transcript"></p>
+            </footer>
+        </div>
+    </body>
 </html>

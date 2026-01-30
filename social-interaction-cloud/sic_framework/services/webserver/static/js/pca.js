@@ -77,6 +77,7 @@ socket.on("transcript", (text) => {
     document.getElementById("transcript").innerHTML = text;
 });
 
+// Event handler for page navigation based on pattern
 socket.on("pattern", (pattern) => {
     switch(pattern) {
         case "start":
@@ -88,8 +89,15 @@ socket.on("pattern", (pattern) => {
         case "a50recipeSelect":
             window.location.href = "recipe_overview.html";
             break;
+        case "a50recipeConfirm":
+            window.location.href = "recipe_confirmation.html";
+            break;
+        case "c43":
+            window.location.href = "closing.html";
+            break;
         default:
-          window.location.href = "closing.html";
+            // Don't navigate for unknown patterns
+            console.log("Unknown pattern: " + pattern);
       }
 })
 
@@ -102,40 +110,132 @@ socket.on("set_turn", (whoseturn) => {
     }
     // If it's not the user's turn (any more), then make sure the microphone icon is mic_out
     if (!user_turn) {
-        document.getElementById('micimg').src  = 'static/images/mic_out.png';
+        var micImg = document.getElementById('micimg');
+        if (micImg) {
+            micImg.src = 'static/images/mic_out.png';
+        }
     }
 })
 
+// Event handler for recipe counter
 socket.on("recipecounter", (number) => {
     recipecounter = number;
-    document.getElementById("recipecounter").innerHTML = recipecounter;
+    var counterElement = document.getElementById("recipecounter");
+    if (counterElement) {
+        counterElement.innerHTML = recipecounter;
+    }
 })
 
-// Example showing how to work with templates
-// Adding filters to a card deck on an HTML page
+// Event handler for filters display
 socket.on("filters", (filterString) => {
     const filtersString = filterString.substring(1, filterString.length-1);
-    if (filterString.length != 0) {
+    var filtersContainer = document.getElementById("addFiltersHere");
+    if (filtersContainer && filterString.length != 0) {
         const filters = filtersString.split(',');
-        document.getElementById("addFiltersHere").innerHTML = "";
+        filtersContainer.innerHTML = "";
         filters.forEach((element) => {
             filterCard(element);
         });
     }
 })
 
-// TODO: Show recipe cards on HTML page
+// Event handler for displaying a single recipe (for confirmation page)
+socket.on("recipe", (recipeData) => {
+    // recipeData should be an object with: name, image, cuisine, time, servings, ingredients
+    var nameElement = document.getElementById("recipeName");
+    var imageElement = document.getElementById("recipeImage");
+    var cuisineElement = document.getElementById("recipeCuisine");
+    var timeElement = document.getElementById("recipeTime");
+    var servingsElement = document.getElementById("recipeServings");
+    var ingredientsElement = document.getElementById("recipeIngredients");
+    
+    if (nameElement) nameElement.innerHTML = recipeData.name || "Unknown Recipe";
+    if (imageElement && recipeData.image) imageElement.src = recipeData.image;
+    if (cuisineElement) cuisineElement.innerHTML = recipeData.cuisine || "-";
+    if (timeElement) timeElement.innerHTML = recipeData.time || "-";
+    if (servingsElement) servingsElement.innerHTML = recipeData.servings || "-";
+    
+    if (ingredientsElement && recipeData.ingredients) {
+        ingredientsElement.innerHTML = "";
+        recipeData.ingredients.forEach((ing) => {
+            var badge = document.createElement("span");
+            badge.className = "badge bg-success m-1";
+            badge.innerHTML = ing;
+            ingredientsElement.appendChild(badge);
+        });
+    }
+})
 
-// TODO: After selection has been made, show a specific recipe in a card with its details
-
-// TODO: Utility function to parse string representations of arrays (e.g., "[chorizo, cheese]")
-
+// Event handler for displaying recipe list
+socket.on("recipeList", (recipes) => {
+    var listContainer = document.getElementById("recipeList");
+    var template = document.getElementById("recipeCardTemplate");
+    
+    if (listContainer && template && recipes) {
+        listContainer.innerHTML = "";
+        recipes.forEach((recipe) => {
+            const card = template.content.cloneNode(true);
+            var nameEl = card.querySelector('#cardRecipeName');
+            var infoEl = card.querySelector('#cardRecipeInfo');
+            var imgEl = card.querySelector('img');
+            
+            if (nameEl) nameEl.innerHTML = recipe.name;
+            if (infoEl) infoEl.innerHTML = (recipe.time || "?") + " min • " + (recipe.servings || "?") + " servings";
+            if (imgEl && recipe.image) imgEl.src = recipe.image;
+            
+            listContainer.appendChild(card);
+        });
+    }
+})
 
 // Create and add a single card for a filter based on the template in the HTML file
 // See also https://www.w3schools.com/tags/tag_template.asp
 function filterCard(filter) {
     let filterTemplate = document.querySelector('#filterCardTemplate');
-    const card = filterTemplate.content.cloneNode(true);
-    card.querySelector('#filterText').innerHTML = filter;
-    document.getElementById("addFiltersHere").appendChild(card);
+    if (filterTemplate) {
+        const card = filterTemplate.content.cloneNode(true);
+        card.querySelector('#filterText').innerHTML = filter;
+        document.getElementById("addFiltersHere").appendChild(card);
+    }
 }
+
+// event handler for displaying selected recipe name
+socket.on("recipename", (name) => {
+    var nameElement = document.getElementById("recipeName");
+    if (nameElement) {
+        nameElement.innerHTML = name;
+    }
+    console.log("Selected recipe: " + name);
+})
+
+// event handler for recipe image
+socket.on("recipeimage", (image) => {
+    var imageElement = document.getElementById("recipeImage");
+    if (imageElement && image) {
+        imageElement.src = image;
+    }
+});
+
+// event handler for recipe time
+socket.on("recipetime", (time) => {
+    var timeElement = document.getElementById("recipeTime");
+    if (timeElement) {
+        timeElement.innerHTML = time;
+    }
+});
+
+// event handler for recipe servings
+socket.on("recipeservings", (servings) => {
+    var servingsElement = document.getElementById("recipeServings");
+    if (servingsElement) {
+        servingsElement.innerHTML = servings;
+    }
+});
+
+// event handler for recipe cuisine
+socket.on("recipecuisine", (cuisine) => {
+    var cuisineElement = document.getElementById("recipeCuisine");
+    if (cuisineElement) {
+        cuisineElement.innerHTML = cuisine;
+    }
+});

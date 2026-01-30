@@ -41,7 +41,7 @@ class SetTurnMessage(SICMessage):
         self.user_turn = user_turn
 
 class WebserverConf(SICConfMessage):
-    def __init__(self, host: str, port: int):
+    def __init__(self, host: str = "0.0.0.0", port: int = 8080):
         """
         :param host         the hostname that a server listens on
         :param port         the port to listen on

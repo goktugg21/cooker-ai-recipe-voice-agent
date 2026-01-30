@@ -340,4 +340,23 @@ module dialog_update {
 	% similar for converting recipes to strings in dialogflow.pl, then come back here and create a similar rule to the one below
 	% to send the recipe strings using webinfo
 	if filters_to_strings(Strings) then webinfo('filters', Strings).  
+	if currentTopLevel(a50recipeConfirm), recipesFiltered(Recipes),
+		Recipes = [RecipeID|_], recipeName(RecipeID, Name)
+	then webinfo('recipename', Name).
+	
+	if currentTopLevel(a50recipeConfirm), recipesFiltered(Recipes),
+		Recipes = [RecipeID|_], picture(RecipeID, Image)
+	then webinfo('recipeimage', Image).
+	
+	if currentTopLevel(a50recipeConfirm), recipesFiltered(Recipes),
+		Recipes = [RecipeID|_], time(RecipeID, Time)
+	then webinfo('recipetime', Time).
+	
+	if currentTopLevel(a50recipeConfirm), recipesFiltered(Recipes),
+		Recipes = [RecipeID|_], servings(RecipeID, Servings)
+	then webinfo('recipeservings', Servings).
+	
+	if currentTopLevel(a50recipeConfirm), recipesFiltered(Recipes),
+		Recipes = [RecipeID|_], cuisine(RecipeID, Cuisine)
+	then webinfo('recipecuisine', Cuisine).
 }
