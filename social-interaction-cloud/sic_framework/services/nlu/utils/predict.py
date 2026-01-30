@@ -2,8 +2,8 @@
 import torch
 from sic_framework.services.nlu.utils.dataset import intent_label_encoder, slot_label_encoder, tokenizer
 from sic_framework.services.nlu.utils.utils import *
-from dataset import intent_label_encoder, slot_label_encoder, tokenizer
-from model import BERTNLUModel
+from .dataset import intent_label_encoder, slot_label_encoder, tokenizer
+from .model import BERTNLUModel
 
 def predict(model, text, max_length=16, device="cpu"):
     """
