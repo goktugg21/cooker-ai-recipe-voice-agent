@@ -1,6 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Responses when a flag has been set for a button.					%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Responses when a flag has been set for a button.					%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % responses for NEW dialog agent 		   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,22 +70,22 @@ text_generator(Intent, SelectedText) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Intent: appreciationReceipt
-
+text(appreciationReceipt, "You're welcome!").
 
 % Intent: contextMismatch(Intent)
-
+text(contextMismatch(_), "I'm not sure what that means in this context.").
 
 % Intent: describeCapability
-
+text(describeCapability, "I can help you find recipes based on ingredients, cuisine type, cooking time, and dietary preferences.").
 
 % Intent: farewell
-
+text(farewell, "Goodbye! Enjoy your meal!").
 
 % Intent: greeting
 text(greeting, "Hey there!").
 
 % Intent: paraphraseRequest
-
+text(paraphraseRequest, "I'm sorry, I didn't understand that. Could you please rephrase?").
 
 % Intent: selfIdentification (for self-identification of the agent)
 text(selfIdentification, Txt) :-
@@ -96,33 +98,53 @@ text(selfIdentification, Txt) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Intent: ackFilter (acknowledge filters added; there are recipes that satisfy all filters)
-
+text(ackFilter, "Got it! I have added that to your preferences.").
 
 % Intent: featureInquiry
-
+text(featureInquiry, "What kind of recipe are you looking for?").
 
 % Intent: featureRemovalRequest
-
+text(featureRemovalRequest, "Okay, I have removed that from your preferences.").
 
 % Intent: noRecipesLeft
-
+text(noRecipesLeft, "Sorry, no recipes match your criteria. Try removing some filters.").
 
 % Intent: pictureGranted
-
+text(pictureGranted, "Here's a picture of the recipe.").
 
 % Intent: pictureNotGranted
-
+text(pictureNotGranted, "Sorry, I don't have a picture for this recipe.").
 
 % Intent: recipeChoiceReceipt (acknowledge user's choice of recipe)
-
+text(recipeChoiceReceipt, "Great choice! Enjoy cooking!").
 
 % Intent: recommend (a recipe)
-
+text(recommend, Txt) :-
+    (   recipesFiltered(Recipes),
+        Recipes = [RecipeID|_],
+        recipeName(RecipeID, Name),
+        format(atom(Txt), "How about trying ~w?", [Name])
+    ->  true
+    ;   Txt = "Sorry, I could not find any recipes matching your preferences."
+    ).
 
 % Intent: recipeCheck
+text(recipeCheck, "Would you like to try this recipe?").
 
+% Intent: showRecipes
+text(showRecipes, "Here are some recipes you might like.").
+
+% Intent: tooManyRecipes
+text(tooManyRecipes, "There are still too many recipes. Please add more preferences.").
 
 % Intent: specifyGoal (asking a user about recipe features they are looking for)
+text(specifyGoal, "What would you like to cook today?").
 
+% Intent: restartAck
+text(restartAck, "Okay, let's start over. All filters have been cleared.").
 
-text(clearMemory, ".").
+% Intent: stopAck  
+text(stopAck, "Okay, stopping the conversation.").
+
+% Intent: clearMemory
+text(clearMemory, "All filters have been cleared.").

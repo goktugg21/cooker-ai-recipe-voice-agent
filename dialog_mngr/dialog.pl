@@ -527,3 +527,10 @@ retrieveIntentsfromPatterns(Actor, Intents) :-
 	setof(Intent,
 		(pattern(Pattern), member([Actor, Intent], Pattern), atom(Intent)),
 		Intents).
+		
+recipesLeft(N) :- recipesFiltered(Recipes), length(Recipes, N).
+recipesLeft(0) :- not(recipesFiltered(_)).
+
+outOfContext(greeting) :- not(currentTopLevel(c10)), not(currentTopLevel(start)).
+outOfContext(farewell) :- not(currentTopLevel(c43)), not(currentTopLevel(a50recipeConfirm)).
+outOfContext(appreciation) :- not(currentTopLevel(a50recipeConfirm)), not(currentTopLevel(c43)).
