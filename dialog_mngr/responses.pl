@@ -148,3 +148,61 @@ text(stopAck, "Okay, stopping the conversation.").
 
 % Intent: clearMemory
 text(clearMemory, "All filters have been cleared.").
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Additional response variety                                                         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Greeting variations
+text(greeting, "Hello! Welcome!").
+text(greeting, "Hi! Nice to see you!").
+text(greeting, "Hey! Ready to cook something delicious?").
+
+% Farewell variations
+text(farewell, "Bye! Happy cooking!").
+text(farewell, "See you next time! Bon appetit!").
+text(farewell, "Take care! Enjoy your food!").
+
+% ackFilter variations
+text(ackFilter, "Perfect! I've noted that down.").
+text(ackFilter, "Alright, added to your filters!").
+text(ackFilter, "Sure thing! Filter applied.").
+
+% featureInquiry variations
+text(featureInquiry, "What would you like to cook today?").
+text(featureInquiry, "Any preferences for your recipe?").
+text(featureInquiry, "Tell me what you're in the mood for!").
+
+% recipeCheck variations
+text(recipeCheck, "How does this recipe sound?").
+text(recipeCheck, "Is this recipe what you were looking for?").
+text(recipeCheck, "Would you like to go with this one?").
+
+% paraphraseRequest variations
+text(paraphraseRequest, "Could you say that differently?").
+text(paraphraseRequest, "I didn't quite catch that. Can you try again?").
+
+% appreciationReceipt variations
+text(appreciationReceipt, "My pleasure!").
+text(appreciationReceipt, "Happy to help!").
+text(appreciationReceipt, "Anytime!").
+
+% noRecipesLeft variations
+text(noRecipesLeft, "No recipes found with those filters. Maybe try fewer restrictions?").
+text(noRecipesLeft, "I couldn't find any matching recipes. Want to remove a filter?").
+
+% tooManyRecipes variations
+text(tooManyRecipes, "We have lots of options! Can you narrow it down a bit?").
+text(tooManyRecipes, "Too many choices! Tell me more about what you want.").
+
+% recipeChoiceReceipt variations
+text(recipeChoiceReceipt, "Excellent pick! Have fun in the kitchen!").
+text(recipeChoiceReceipt, "Nice! That's a delicious recipe!").
+
+% showRecipes variations
+text(showRecipes, "Check out these recipe options!").
+text(showRecipes, "I found these recipes for you!").
+
+% clearMemory variations
+text(clearMemory, "Starting fresh! All preferences removed.").
+text(clearMemory, "Filters reset. Let's start over!").
