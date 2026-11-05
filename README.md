@@ -2,10 +2,20 @@
 
 **A speech-based conversational agent that recommends recipes from a database of ~1,000 dishes. It understands what you want ("something Italian, no chicken, under 30 minutes"), narrows the results turn by turn, and shows each recommendation visually.**
 
-<!-- Screenshots: replace the placeholders below -->
-| Conversation | Filtering | Recipe details |
-|---|---|---|
-| ![Conversation](docs/screenshots/conversation.png) | ![Filtering](docs/screenshots/filtering.png) | ![Recipe details](docs/screenshots/recipe.png) |
+<table>
+  <tr>
+    <th>Understanding a request</th>
+    <th>Intent training data</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="artifacts/screenshots/dialogflow_test_addfilter.png" alt="'I want italian lunch with chicken' parsed as intent addFilter with cuisine=italian, mealType=lunch, ingredient=chicken" width="260"></td>
+    <td align="center"><img src="artifacts/screenshots/intent_distribution_2025-01-13.png" alt="Intent sample counts in the training and test sets" width="560"></td>
+  </tr>
+</table>
+
+<!-- TODO: add a screenshot of the web UI recipe card (docs/screenshots/recipe.png) -->
+
+<p align="center"><img src="artifacts/screenshots/a2_model_architecture_2026-01-13.png" alt="NLU model: BERT encoder with an intent-classification head and a BIO slot-tagging head" width="600"></p>
 
 ## Features
 
