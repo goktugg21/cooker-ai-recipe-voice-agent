@@ -199,3 +199,6 @@ social-interaction-cloud/sic_framework/services/eis/google-key.json
 /docs/
 /scripts/
 .DS_Store
+
+# Any Google service-account key variant (incl. names with spaces)
+*google-key*.json
