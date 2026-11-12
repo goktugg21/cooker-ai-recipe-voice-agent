@@ -1,6 +1,6 @@
 # Cooker AI
 
-**A speech-based conversational agent that recommends recipes from a database of ~1,000 dishes. It understands what you want ("something Italian, no chicken, under 30 minutes"), narrows the results turn by turn, and shows each recommendation visually.**
+**A speech-based conversational agent that recommends recipes from a database of 891 recipes. It understands what you want ("something Italian, no chicken, under 30 minutes"), narrows the results turn by turn, and shows each recommendation visually.**
 
 <table>
   <tr>
@@ -72,7 +72,6 @@ The trained BERT classifier checkpoint is linked in [Report.md](Report.md).
 | Component | Metric | Score |
 |---|---|---|
 | Intent classifier | Accuracy | **89.3%** |
-| Slot classifier | F1 | **0.98** |
 
 The full evaluation, exclusion tests and pilot user study are in [Report.md](Report.md).
 
